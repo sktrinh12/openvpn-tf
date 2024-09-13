@@ -6,9 +6,9 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-echo '..........'
-echo $1
-echo '..........'
+echo '.....................'
+echo "argument passed: $1"
+echo '.....................'
 
 # Set the path to the Terraform project directory
 TF_DIR=$HOME/Documents/scripts/terraform/openvpn-ec2
