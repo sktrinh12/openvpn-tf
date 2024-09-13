@@ -36,7 +36,7 @@ case "$1" in
 
     # Download the .ovpn file using scp
     echo "Downloading the .ovpn file from the server..."
-    scp -i $PRIVATE_KEY ubuntu@$SERVER_IP:/home/ubuntu/client/client.ovpn $LOCAL_OVPN_PATH
+    scp -o StrictHostKeyChecking=no -i $PRIVATE_KEY ubuntu@$SERVER_IP:/home/ubuntu/client/client.ovpn $LOCAL_OVPN_PATH
 
     # Notify completion
     if [ $? -eq 0 ]; then
