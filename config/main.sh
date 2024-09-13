@@ -52,7 +52,6 @@ case "$1" in
     terraform destroy -auto-approve
 
     rm $LOCAL_OVPN_PATH
-    rm $PRIVATE_KEY
 
     echo "Shutdown complete, and the local files have been removed."
     ;;
