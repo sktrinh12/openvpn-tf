@@ -15,5 +15,5 @@ variable "key_name" {
 
 variable "script_file" {
   description = "The name of the bash script to run"
-  default     = "config/openvpn-setup.sh"
+  default     = "openvpn-setup.sh"
 }

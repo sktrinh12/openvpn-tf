@@ -24,7 +24,7 @@ resource "aws_instance" "openvpn" {
   }
 
   provisioner "file" {
-    source      = var.script_file
+    source      = "config/${var.script_file}"
     destination = "/tmp/${var.script_file}"
 
     connection {
