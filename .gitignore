@@ -26,3 +26,6 @@ Thumbs.db
 
 # Terraform plan files
 *.tfplan
+
+# pem key
+openvpn_key.pem
