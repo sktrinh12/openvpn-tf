@@ -31,20 +31,18 @@ sudo sed -i 's/<VirtualHost *:80>/<VirtualHost *:8080>/' /etc/apache2/sites-avai
 
 sudo sed -i 's/<VirtualHost \*:80>/<VirtualHost \*:8080>/' /etc/apache2/sites-available/000-default.conf
 
-sudo sed -i '/DocumentRoot \/var\/www\/html/a \
-<Directory "/var/www/html">\
-\nOptions Indexes FollowSymLinks\
-\nAllowOverride None\
-\nRequire all granted\
-\n</Directory>' /etc/apache2/sites-available/000-default.conf
+sudo sed -i '/DocumentRoot \/var\/www\/html/a <Directory "/var/www/html">\nOptions Indexes FollowSymLinks\nAllowOverride None\nRequire all granted\n</Directory>' /etc/apache2/sites-available/000-default.conf
 
 sudo systemctl start apache2
 
 echo "The .ovpn file has been served at http://$PUBLIC_IP:8080/template.ovpn"
 
-CRON_JOB="0 $(date +'%H') $(date +'%d') $(date +'%m') * sudo systemctl stop apache2"
+CRON_JOB="0 $((($(date +'%H') + 1) % 24)) $(date +'%d') $(date +'%m') * sudo systemctl stop apache2"
 
 (crontab -l 2>/dev/null; echo "$CRON_JOB") | crontab -
 
 echo "A cron job has been set to shut down Apache in one hour."
 crontab -l
+
+# not sure why need restart, but when testing it is requried otherwise, failed to connect, connection refused
+sudo systemctl restart apache2
